@@ -7,7 +7,7 @@ import RoleProtectedRoute from "./utils/RoleProtectedRoutes.jsx";
 import Admin from "./routes/Admin.jsx";
 import User from "./routes/User.jsx";
 import Owner from "./routes/Owner.jsx";
-import ChangePassword from "./pages/authentication/changePassword.jsx";
+import ChangePassword from "./pages/authentication/ChangePassword.jsx";
 
 function App() {
   return (
