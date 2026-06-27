@@ -19,8 +19,8 @@ const email = () => {
 
 const name = () => {
   return body("name")
-    .isLength({ min: 20, max: 60 })
-    .withMessage("Name must be 20 - 60 characters");
+    .isLength({ min: 10, max: 60 })
+    .withMessage("Name must be 10 - 60 characters");
 };
 const address = () => {
   return body("address")

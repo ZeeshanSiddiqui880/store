@@ -10,7 +10,10 @@ function SubmitRating() {
   const {data:stores} = useGetStores();
   const navigate = useNavigate();
 
-  const store = stores?.find((store) => store.id === Number(storeId));
+  const store = stores?.find((store) => store.id === (storeId));
+  console.log(storeId, "storeid");
+  console.log(store, "store");
+  
 
   const userId = localStorage.getItem("userId");
 

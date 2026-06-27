@@ -5,9 +5,9 @@ const Store = sequelize.define(
   "Store",
   {
     id: {
-      type: DataTypes.INTEGER,
+     type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING(60),
@@ -23,7 +23,7 @@ const Store = sequelize.define(
       allowNull: false,
     },
     ownerId: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: true,
     },
   },

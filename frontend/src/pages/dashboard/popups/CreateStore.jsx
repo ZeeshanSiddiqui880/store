@@ -31,10 +31,10 @@ function CreateStore({ isOpen, onClose }) {
     if (!formData.name.trim()) {
       newErrors.name = "Store name is required";
     } else if (
-      formData.name.trim().length < 20 ||
+      formData.name.trim().length < 10 ||
       formData.name.trim().length > 60
     ) {
-      newErrors.name = "Store name must be between 20 and 60 characters";
+      newErrors.name = "Store name must be between 10 and 60 characters";
     }
 
     if (!formData.email.trim()) {
