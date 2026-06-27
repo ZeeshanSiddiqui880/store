@@ -13,6 +13,8 @@ function ViewDetailsPopup({ isOpen, onClose, userId }) {
         return "bg-red-100 text-red-700";
       case "store_owner":
         return "bg-blue-100 text-blue-700";
+      case "user":
+        return "bg-green-100 text-green-700";
       default:
         return "bg-green-100 text-green-700";
     }
@@ -55,9 +57,9 @@ function ViewDetailsPopup({ isOpen, onClose, userId }) {
                   user?.role,
                 )}`}
               >
-                {user.role === "admin"
+                {user?.role === "admin"
                   ? "ADMIN"
-                  : user.role === "store_owner"
+                  : user?.role === "store_owner"
                     ? "STORE OWNER"
                     : "USER"}
               </span>

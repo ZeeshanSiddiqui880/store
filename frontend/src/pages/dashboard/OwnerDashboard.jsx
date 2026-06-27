@@ -40,13 +40,6 @@ function OwnerDashboard() {
   const stores = data?.stores;
   console.log(stores);
 
-  if (isLoading) {
-    return <p className="text-center text-2xl">Loading...</p>;
-  }
-
-  if (error) {
-    return <p className="text-center text-red-500">Failed to load dashboard</p>;
-  }
   return (
     <div className="min-h-screen bg-gray-50 flex">
       <div className="flex-1 flex flex-col min-w-0">
@@ -87,79 +80,113 @@ function OwnerDashboard() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-50">
-                {stores?.map((store) => (
-                  <tr
-                    key={store.id}
-                    className="hover:bg-gray-50 transition-colors"
-                  >
-                    <td className="px-5 py-4 text-sm font-medium text-gray-800">
-                      {store.name}
-                    </td>
-                    <td className="px-5 py-4 text-sm text-gray-500">
-                      {store.email}
-                    </td>
-                    <td className="px-5 py-4 text-sm text-gray-500 max-w-45 truncate">
-                      {store.address}
-                    </td>
-                    <td className="px-5 py-4">
-                      <span
-                        className={`px-2.5 py-1 rounded-full text-xs font-semibold`}
-                      >
-                        {store.averageRating || "0"}
-                      </span>
-                    </td>
-                    <td className="px-5 py-4">
-                      <button
-                        onClick={() => {
-                          setViewOpen(true);
-                          setStore(store);
-                        }}
-                        className="flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm font-medium cursor-pointer"
-                      >
-                        <MdVisibility className="text-base" />
-                        View
-                      </button>
+                {isLoading ? (
+                  <tr>
+                    <td
+                      colSpan={5}
+                      className="px-5 py-8 text-center text-gray-500"
+                    >
+                      Loading stores...
                     </td>
                   </tr>
-                ))}
+                ) : stores?.length > 0 ? (
+                  stores.map((store) => (
+                    <tr
+                      key={store.id}
+                      className="hover:bg-gray-50 transition-colors"
+                    >
+                      <td className="px-5 py-4 text-sm font-medium text-gray-800">
+                        {store.name}
+                      </td>
+                      <td className="px-5 py-4 text-sm text-gray-500">
+                        {store.email}
+                      </td>
+                      <td className="px-5 py-4 text-sm text-gray-500 max-w-45 truncate">
+                        {store.address}
+                      </td>
+                      <td className="px-5 py-4">
+                        <span
+                          className={`px-2.5 py-1 rounded-full text-xs font-semibold`}
+                        >
+                          {store.averageRating || "0"}
+                        </span>
+                      </td>
+                      <td className="px-5 py-4">
+                        <button
+                          onClick={() => {
+                            setViewOpen(true);
+                            setStore(store);
+                          }}
+                          className="flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm font-medium cursor-pointer"
+                        >
+                          <MdVisibility className="text-base" />
+                          View
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td
+                      colSpan={5}
+                      className="px-5 py-8 text-center text-gray-500"
+                    >
+                      No stores found
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
 
           <div className="sm:hidden space-y-3">
-            {stores?.map((store) => (
-              <div
-                key={store.id}
-                className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4"
-              >
-                <div className="flex items-start justify-between mb-2">
-                  <div>
-                    <p className="text-sm font-semibold text-gray-800">
-                      {store.name}
-                    </p>
-                    <p className="text-xs text-gray-500 mt-0.5">
-                      {store.email}
-                    </p>
-                  </div>
-                  <span
-                    className={`px-2.5 py-1 rounded-full text-xs font-semibold shrink-0`}
-                  >
-                    {store.averageRating || "0"}
-                  </span>
-                </div>
-                <p className="text-xs text-gray-400 mb-3">{store.address}</p>
-                <button
-                  onClick={() => {
-                    setViewOpen(true);
-                    setStore(store);
-                  }}
-                  className="flex items-center gap-1 text-blue-600 text-sm font-medium cursor-pointer"
+            {isLoading ? (
+              <tr>
+                <td colSpan={5} className="px-5 py-8 text-center text-gray-500">
+                  Loading stores...
+                </td>
+              </tr>
+            ) : stores?.length > 0 ? (
+              stores.map((store) => (
+                <div
+                  key={store.id}
+                  className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4"
                 >
-                  <MdVisibility className="text-base" />
-                  View Details
-                </button>
-              </div>
-            ))}
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <p className="text-sm font-semibold text-gray-800">
+                        {store.name}
+                      </p>
+                      <p className="text-xs text-gray-500 mt-0.5">
+                        {store.email}
+                      </p>
+                    </div>
+                    <span
+                      className={`px-2.5 py-1 rounded-full text-xs font-semibold shrink-0`}
+                    >
+                      {store.averageRating || "0"}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-400 mb-3">{store.address}</p>
+                  <button
+                    onClick={() => {
+                      setViewOpen(true);
+                      setStore(store);
+                    }}
+                    className="flex items-center gap-1 text-blue-600 text-sm font-medium cursor-pointer"
+                  >
+                    <MdVisibility className="text-base" />
+                    View Details
+                  </button>
+                </div>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={5} className="px-5 py-8 text-center text-gray-500">
+                  No stores found
+                </td>
+              </tr>
+            )}
           </div>
         </main>
       </div>

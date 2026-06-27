@@ -3,11 +3,12 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
- 
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const storeRoutes = require("./routes/storeRoutes");
 const ownerRoutes = require("./routes/ownerRoutes");
+const { sequelize } = require("./config/sequelize");
+require("./models/index")
 
 const app = express();
 
@@ -27,6 +28,15 @@ app.use("/api/stores", storeRoutes);
 app.use("/api/owner", ownerRoutes);
 app.get("/health", (req, res) => res.json({ status: "ok" }));
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+sequelize
+  .sync({ alter: true })
+  .then(() => {
+    console.log("Database synced successfully");
+
+    app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+    });
+  })
+  .catch((err) => {
+    console.error("Database sync failed:", err);
+  });

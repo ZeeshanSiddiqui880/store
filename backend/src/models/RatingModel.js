@@ -5,17 +5,17 @@ const Rating = sequelize.define(
   "Rating",
   {
     id: {
-      type: DataTypes.INTEGER,
+     type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
-      autoIncrement: true,
     },
     userId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.UUID,
+      allowNull: true,
     },
     storeId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      type: DataTypes.UUID,
+      allowNull: true,
     },
     rating: {
       type: DataTypes.TINYINT,
