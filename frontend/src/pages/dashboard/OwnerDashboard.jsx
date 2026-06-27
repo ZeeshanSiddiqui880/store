@@ -14,7 +14,7 @@ import {
 } from "react-icons/md";
 import { getStores } from "../../hooks/owner/useOwner";
 import ViewDetailsPopup from "./popups/ViewDetailsPopup";
-import CreateStore from "./popups/createStore";
+import CreateStore from "./popups/CreateStore";
 
 const StatCard = ({ icon, label, value, color }) => (
   <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-6 flex items-center gap-4">

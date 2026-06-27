@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import ApiRoutes from "../utils/apiroutes";
 import { toast } from "sonner";
 import axiosInstance from "../utils/AxiosInstance";
+import ApiRoutes from "../utils/Apiroutes";
 
 export const useLogin = () => {
   return useMutation({
