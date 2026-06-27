@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import axiosInstance from "../../utils/AxiosInstance";
-import ApiRoutes from "../../utils/apiroutes";
+import ApiRoutes from "../../utils/Apiroutes";
 
 export const getStores = () => {
   return useQuery({
